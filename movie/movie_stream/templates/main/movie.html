@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Video - 
+{% endblock %}
+
+
+
+{% block content %}
+
+<!-- <video width="320" height="240" controls>
+    <source src="{{ video.path }}" type="video/mp4">
+  Your browser does not support the video tag.
+  </video> -->
+
+<iframe width="420" height="345" src="{{movie.path}}">
+</iframe>
+
+<p>{{ movie.description }}</p>
+
+
+{% endblock %}
