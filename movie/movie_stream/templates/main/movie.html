@@ -17,6 +17,26 @@ Video -
 </iframe>
 
 <p>{{ movie.description }}</p>
+<br><br>
+<h3>Comments</h3>
+
+{% if form %}
+<form action="/comment" method="POST">
+	{% csrf_token %}
+	{{ form }}
+	<input type="hidden" name="movie" value='{{ movie.id}}'>
+	<button type="submit" class="btn btn-primary">Post Comment</button>
+	
+</form>
+{% endif %}
+
+{% for comment in comments %}
+<p>
+	{{ comment.user }} posted on: {{ comment.datetime }}
+	<br>
+	{{ comment.text }}
+</p>
+{% endfor %}
 
 
 {% endblock %}

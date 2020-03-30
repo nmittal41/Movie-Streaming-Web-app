@@ -12,6 +12,7 @@ urlpatterns= [
 		path('logout/',views.logout_request,name='logout'),
 		path('profile/',views.view_profile,name='profile'),
 		path('movie/<int:id>',views.MovieView,name='MovieView'),
+		path('comment',views.CommentView,name='CommentView'),
 
 
 ]
