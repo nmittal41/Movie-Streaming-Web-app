@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Movie(models.Model):
 	title=models.CharField(max_length=30)
-	description=models.TextField(max_length=300)
+	description=models.TextField(max_length=800)
 	path=models.CharField(max_length=80)
 	datetime=models.DateTimeField(default=timezone.now)
 

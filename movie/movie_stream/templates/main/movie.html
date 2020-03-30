@@ -7,16 +7,20 @@ Video -
 
 
 {% block content %}
-
-<!-- <video width="320" height="240" controls>
+<!-- 
+<video width="320" height="240" controls>
     <source src="{{ video.path }}" type="video/mp4">
   Your browser does not support the video tag.
   </video> -->
-
+<!-- 
 <iframe width="420" height="345" src="{{movie.path}}">
-</iframe>
-
-<p>{{ movie.description }}</p>
+</iframe> -->
+ <div class="video-container">
+        <iframe width="853" height="480" src="{{ movie.path }}" frameborder="0" allowfullscreen></iframe>
+ </div>
+<p><strong>{{ movie.description }}</strong></p>
+<!-- <p style="color:dark-black;">{{ movie.description }}</p> -->
+<!-- <p>{{ movie.description }}</p> -->
 <br><br>
 <h3>Comments</h3>
 
@@ -32,7 +36,7 @@ Video -
 
 {% for comment in comments %}
 <p>
-	{{ comment.user }} posted on: {{ comment.datetime }}
+	<strong>{{ comment.user }}</strong> posted on: {{ comment.datetime }}
 	<br>
 	{{ comment.text }}
 </p>
@@ -40,3 +44,6 @@ Video -
 
 
 {% endblock %}
+
+    <span class="black-text text-darken-2">{{ comment.user }}</span>
+
