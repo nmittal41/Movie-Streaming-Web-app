@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def homepage(request):
-	most_recent_movies=Movie.objects.order_by('-datetime')[:8]
+	most_recent_movies=Movie.objects.order_by('-datetime')
 	return render(request=request,
 				  template_name="main/home.html",
 				  context={"most_recent_movies":most_recent_movies})
@@ -21,21 +21,16 @@ def homepage(request):
 #	def get(self,request):
 #		most_recent_movies=Movie.objects.order_by('-datetime')[:8]
 #		return render(request,self.template_name,{'menu_active_items':'home','most_recent_movies':most_recent_movies})
-#@login_required
-#def MovieView(request,id):
-#	movie=Movie.objects.get(id=id)
-#	return render(request=request,
-#				  template_name="main/movie.html",
-#				  context={"movie":movie})
 
 def MovieView(request,id):
+	""" This function is for displaying movie and showing comments of that movie."""
 	movie=Movie.objects.get(id=id)
 	if request.user.is_authenticated:
 		print('user signed in')
 		comment_form=CommentForm()
 		#context['form']=comment_form
 
-		comments=Comment.objects.filter(movie__id=id).order_by('-datetime')[:5]
+		comments=Comment.objects.filter(movie__id=id).order_by('-datetime')
 		print(comments)
 		return render(request=request,
 				       template_name="main/movie.html",
@@ -45,6 +40,8 @@ def MovieView(request,id):
 		return redirect("movie_stream:homepage")
 
 def CommentView(request):
+
+	"""This function is for saving comment posted by the user."""
 	if request.method=="POST":
 		form=CommentForm(request.POST)
 		if form.is_valid():
