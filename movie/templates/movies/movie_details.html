@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load embed_video_tags %} {% block content %}
+
+<div class="container">
+  <h1 class='display-4'> {{object.detail.title}} </h1>
+  {% if user.is_superuser %}
+  <a href="/movies/update/{{object.detail.id}}">Edit</a> {% endif %}
+  <div class='yt_video'>
+    {% video object.detail.url as my_video %} {% video my_video '800x600' %} {% endvideo %}
+  </div>
+  <br>
+  <h1 class='display-4'> Description </h1>
+  <p>{{object.detail.desription}} </p>
+  <br>
+
+  <div class="card">
+    <div class="card-body">
+      <!-- comments -->
+      <h2>{{ comments.count }} comments</h2>
+
+      {% for comment in object.comment %}
+      <div class="comments" style="padding: 10px;">
+        <p class="font-weight-bold">
+          {{ comment.user.username }}
+          <span class=" text-muted font-weight-normal">
+            {{ comment.created_on }}
+            {{ comment.user.email }}
+          </span>
+        </p>
+        {{ comment.body | linebreaks }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <hr> {% if user.is_authenticated %}
+  <div class="card">
+    <div class="card-body">
+      <h3>Leave a comment</h3>
+      {% load crispy_forms_tags %}
+      <form method="post" action="comment/{{object.detail.id}}">
+        {{ object.form|crispy }} {% csrf_token %}
+        <button type="submit" class="btn btn-outline-primary  btn-lg">Submit</button>
+      </form>
+    </div>
+    {% endif %} {% endblock %}

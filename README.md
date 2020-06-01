@@ -27,10 +27,3 @@ python manage.py runserver
 ```
 
 
-
-## Technical Approach
-- To add a movie I have made a path field in which it contains the link of movie.
-- User can watch movie only if he is logged in.
-- User can also add comments on movie.
-- Currently in this project I have used some movies from youtube.
-- To add a movie from youtube provide link e.g https://www.youtube.com/embed/{video id}  

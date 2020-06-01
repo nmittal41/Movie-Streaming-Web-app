@@ -1,0 +1,12 @@
+.yt_thumbnail img{
+    min-width: 450px !important;
+	padding: 10px;
+    height:auto !important;
+}
+.display-4{
+	font-size: 1.6em !important;
+	text-decoration: none;
+}
+.yt_video .display-3{
+text-align: center;
+}

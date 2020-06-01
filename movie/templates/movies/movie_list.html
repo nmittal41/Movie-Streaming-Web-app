@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% load embed_video_tags %} {% block content %}
+<div class="container">
+	<h2>Movies</h2>
+	{% if user.is_superuser %}
+	<a href="{% url 'MovieDetailsForm' %}"> Add Movie </a> {% endif %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="row">
+			{% for movie in object_list %}
+			<div class="col">
+				<a href="{{movie.id}}">
+					<h3 class="display-4">{{ movie.title }}</h3>
+					{% video movie.url as my_video %}
+					<div class="yt_thumbnail"><img src="{{ my_video.thumbnail }}" class="figure-img img-fluid rounded">
+					</div>
+					{% endvideo %}
+				</a>
+				<br>
+				<br>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endblock %}
